@@ -1,0 +1,79 @@
+<% content_for :title, "Rolled!" %>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">HOMEWORK 3</a>
+          <div class="navbar-content">
+            <ul class="nav  pull-right">
+              <li>
+                <a href="/rps">RPS</a>
+              </li>
+              <li>
+                <a href="/poker">POKER</a>
+              </li>
+              <li class="active">
+                <a href="/dice">DICE</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="page-header">
+        <h1>Roll the Dice Game! <%= @title %></h1>
+      </div>
+      <% if request.post? %>
+
+        <% if (@sum == 2 or @sum == 3 or @sum == 12) and @turn ==1 %>
+          <% @status = "done" %>
+          <h3>You lost! The first roll was <%= @sum %></h3>
+        <% elsif (@sum == 7 or @sum == 11) and @turn == 1 %>
+          <% @status = "done" %>
+          <h3>You win! The first roll was <%= @sum %></h3>
+        <% elsif @turn ==2 %>
+          <h3>This dice roll = <%= (@rand_numb1+@rand_numb2) %></h3>
+        <% end %>
+        <div class="row">
+          <div class="span6">
+            <div class="well">
+              <%=image_tag @rand_numb1.to_s()+'.png' %>
+            </div>
+          </div>
+          <div class="span6">
+            <div class="well">
+              <%=image_tag @rand_numb2.to_s()+'.png' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="span12">
+          <% if @turn == 2 %>
+            <% @sum = params[:point] %>
+            <%if params[:point].to_i() == (@rand_numb1+@rand_numb2)%>
+            <h3>You win! First roll: <%=params[:point] %> Second roll: <%=(@rand_numb1+@rand_numb2) %></h3>
+            <a class="btn btn-success" href="/dice">Back to Dice main page<br></a>
+            <% elsif (@rand_numb1+@rand_numb2) > 6 %>
+            <h3>You lost! First roll: <%=params[:point] %> Second roll: <%=(@rand_numb1+@rand_numb2) %></h3>
+            <a class="btn btn-success" href="/dice">Back to Dice main page<br></a>
+            <% else %>
+            <h4>Now try to get <%= @sum %> again before you roll a 7.</h4>
+              <%= form_tag(roll_url+'?point='+params[:point]) do %>
+              <p><%= submit_tag('Roll the dice again!') %></p>
+              <% end %>
+            <% end %>
+
+          <% elsif @status != "done"  %>
+              <h3>Your point is now <%= @sum %></h3>
+              <h4>Now try to get <%= @sum %> again before you roll a 7.</h4>
+              <%= form_tag(roll_url+'?point='+@sum.to_s()) do %>
+              <p><%= submit_tag('Roll the dice again!') %></p>
+              <% end %>
+          <% elsif @status == "done"%>
+            <a class="btn btn-success" href="/dice">Back to Dice main page<br></a>
+          <% end %>
+        </div>
+      </div>
+    </div>

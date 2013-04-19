@@ -1,0 +1,41 @@
+<% content_for :title, "Roll the dice!" %>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">HOMEWORK 3</a>
+          <div class="navbar-content">
+            <ul class="nav  pull-right">
+              <li>
+                <a href="rps">RPS</a>
+              </li>
+              <li>
+                <a href="poker">POKER</a>
+              </li>
+              <li class="active">
+                <a href="dice">DICE</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="page-header">
+        <h1>Roll the Dice Game</h1>
+        <ul>
+          <li>Roll the dice to start the game.</li>
+          <li>If your first roll is a 7 or 11, you win.</li>
+          <li>If your first roll is a 2, 3 or 12, you lose.</li>
+          <li>
+          Anything else becomes your
+          <em>point.</em>
+          Roll your point again before a 7 and you win.
+          </li>
+        </ul>
+      </div>
+      <div class="row"></div>
+      <%= form_tag(roll_url) do %>
+      <p><%= submit_tag('Start rolling the dice!') %></p>
+      <% end %>
+    </div>

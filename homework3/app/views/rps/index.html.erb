@@ -1,0 +1,55 @@
+<% content_for :title, "ROCK PAPER SCISSOR!" %>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">HOMEWORK 3</a>
+          <div class="navbar-content">
+            <ul class="nav  pull-right">
+              <li class="active">
+                <a href="rps">RPS</a>
+              </li>
+              <li>
+                <a href="poker">POKER</a>
+              </li>
+              <li>
+                <a href="dice">DICE</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="page-header">
+        <h1>ROCK PAPER SCISSOR!</h1>
+      </div>
+
+      <% if @result != '' %>
+      <h3><%= @result %></h3>
+      <p>
+        Your Pick = <%= @user_pick %><br>
+        Computer Pick = <%= @comp_pick %><br></p>
+      <% end %>
+      <p class="lead">PLESE CHOOSE ONE TO PLAY RPS!</p>
+      <div class="row">
+        <div class="span4">
+          <div class="well">
+            <h4>ROCK</h4>
+            <%=link_to image_tag('rock.jpg'),'rps?choose=rock',:method=> :post %>
+          </div>
+        </div>
+        <div class="span4">
+          <div class="well">
+            <h4>PAPER</h4>
+            <%=link_to image_tag('paper.png'),'rps?choose=paper',:method=> :post %>
+          </div>
+        </div>
+        <div class="span4">
+          <div class="well">
+            <h4>SCISSOR</h4>
+            <%=link_to image_tag('scissor.jpg'),'rps?choose=scissor',:method=> :post %>
+          </div>
+        </div>
+      </div>
+    </div>

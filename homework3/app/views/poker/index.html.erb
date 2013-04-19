@@ -1,0 +1,41 @@
+<% content_for :title, "Poker!" %>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">HOMEWORK 3</a>
+          <div class="navbar-content">
+            <ul class="nav  pull-right">
+              <li>
+                <a href="rps">RPS</a>
+              </li>
+              <li class="active">
+                <a href="poker">POKER</a>
+              </li>
+              <li>
+                <a href="dice">DICE</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="page-header">
+        <h1>POKER!</h1>
+      </div>
+      <p class="lead"><%= link_to "Refresh to get new cards", poker_path %></p>
+      <div class="row">
+        <div class="span4">
+          <div class="well"><%=image_tag @selected_ar[0] %></div>
+          <div class="well"><%=image_tag @selected_ar[1] %></div>
+          <div class="well"><%=image_tag @selected_ar[2] %></div>
+        </div>
+        <div class="span4">
+          <div class="well"><%=image_tag @selected_ar[3] %></div>
+          <div class="well"><%=image_tag @selected_ar[4] %></div>
+        </div>
+        <div class="span4">
+        </div>
+      </div>
+    </div>
